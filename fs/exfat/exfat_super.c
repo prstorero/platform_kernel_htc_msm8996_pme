@@ -2647,7 +2647,7 @@ static void exfat_debug_kill_sb(struct super_block *sb)
 
 static struct file_system_type exfat_fs_type = {
 	.owner       = THIS_MODULE,
-#if defined(CONFIG_MACH_LGE) || defined(CONFIG_HTC_BATT_CORE)
+#ifdef CONFIG_EXFAT_COMPAT_TUXERA
 	.name        = "texfat",
 #else
 	.name        = "exfat",
@@ -2704,9 +2704,10 @@ module_init(init_exfat);
 module_exit(exit_exfat);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("exFAT Filesystem Driver");
+MODULE_DESCRIPTION("exFAT & texFAT Filesystem Driver");
+MODULE_AUTHOR("@Dorimanx, Mods By @Eliminater74");
 #ifdef MODULE_ALIAS_FS
-#if defined(CONFIG_MACH_LGE) || defined(CONFIG_HTC_BATT_CORE)
+#ifdef CONFIG_EXFAT_COMPAT_TUXERA
 MODULE_ALIAS_FS("texfat");
 #else
 MODULE_ALIAS_FS("exfat");
